@@ -1,0 +1,44 @@
+class Solution {
+        public List<List<Integer>> fourSum(int[] nums, int target) {
+            //输入参数少于等于4个
+            if(nums == null || nums.length < 4){
+                return new ArrayList<List<Integer>>();
+            }else if (nums.length == 4){
+                if ((nums[0]+nums[1]+nums[2]+nums[3])==target) {
+                    ArrayList<Integer> result = new ArrayList<>();
+                    ArrayList<List<Integer>> results = new ArrayList<>();
+                    for(int i=0;i<nums.length;i++){
+                        result.add(nums[i]);
+                    }
+                    results.add(result);
+                    return results;
+                }
+            }
+            //输入参数大于4
+            //先排序
+            Arrays.sort(nums);
+            //定一端，动另一端
+            List<List<Integer>> results = new ArrayList<List<Integer>>();
+            for(int i=0; i<nums.length; i++){
+                for(int j=nums.length-1; j>i; j--){
+                    int x = i+1;
+                    int y = j-1;
+                    while( x<y ){
+                        int tmp = nums[i]+nums[x]+nums[y]+nums[j];
+                        if (tmp > target){
+                            y--;
+                        }else if (tmp < target){
+                            x++;
+                        }else{
+                            List<Integer> result = Arrays.asList(nums[i],nums[x],nums[y],nums[j]);
+                            if(!results.contains(result)){
+                                results.add(result);
+                            }
+                            y--;
+                        }
+                    }
+                }
+            }
+            return results;
+        }
+    }
