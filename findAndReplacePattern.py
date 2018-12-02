@@ -1,8 +1,11 @@
 class Solution(object): 
 	def findAndReplacePattern(self, words, pattern): """
+        :type words: List[str]
         :type pattern: str
         :rtype: List[str]
+        """
 		res=[]
+        set_pattern=set(pattern)
         for word in words:
             if len(set(word))!=len(set_pattern):
                 continue
